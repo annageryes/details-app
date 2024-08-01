@@ -8,7 +8,7 @@ pipeline{
                 echo 'check code spell check'
                 sleep 2
                 sh '''
-	            echo "spellcheck"
+	            echo "spellcheck /home/jenkins/workspace/spellcheck/"
                     #codespell /home/jenkins/
                 '''
             } //error with artifact
