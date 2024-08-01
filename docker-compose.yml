@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  details-app:
+    build: .
+    command: gunicorn --config /home/app/gunicorn_conf.py src.details:app
+    environment:
+      DATABASE_URL: postgres://postgres@database_default:5432/db
+    links:
+      - 'database_default'
+    ports:
+      - '8000:80'
+    volumes:
+      - '.:/app:rw'
+      - './data:/data:rw'
+
+  database_default:
+    image: postgres:13.5-alpine
+    environment:
+      POSTGRES_DB: 'db'
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
+      SERVICE_MANAGER: 'fsm-postgres'
+    volumes:
+      - '.:/app:rw'
+      - 'database-default:/var/lib/postgresql/data/'
+
+volumes:
+  database-default:
+
+#     image: details_app
+#     ports:
+#       - "32711:8080"
+

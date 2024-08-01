@@ -18,3 +18,5 @@ Applications that can store your personal details and list all the written users
 ### Setup
 
 
+docker run -d -P <container_name>
+then get the exposed port from docker ps 
