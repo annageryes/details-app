@@ -8,8 +8,7 @@ pipeline{
                 echo 'check code spell check'
                 sleep 2
                 sh '''
-                echo "pip install codespell"
-	            echo "spellcheck /home/jenkins/workspace/spellcheck/"
+	            echo "codespell"
                     #codespell /home/jenkins/
                 '''
             } //error with artifact
