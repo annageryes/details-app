@@ -8,6 +8,7 @@ pipeline{
                 echo 'check code spell check'
                 sleep 2
                 sh '''
+                echo "pip install codespell"
 	            echo "spellcheck /home/jenkins/workspace/spellcheck/"
                     #codespell /home/jenkins/
                 '''
