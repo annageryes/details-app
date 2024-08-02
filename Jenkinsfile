@@ -10,7 +10,7 @@ pipeline{
         }
         stage('pre-requisits'){
             steps{
-                echo 'sudo yum -y install spellcheck'
+                echo 'pip install codespell'
             } //error with artifact
         }
         yum install spellcheck
