@@ -15,7 +15,7 @@ pipeline{
         }
         stage('trigger_spell_check_pipline'){
             steps{
-                build job: 'spellcheck', wait: false
+                build job: 'spellcheck', wait: true
             } //error with artifact
         }
     }
