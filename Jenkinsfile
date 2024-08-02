@@ -13,7 +13,6 @@ pipeline{
                 echo 'pip install codespell'
             } //error with artifact
         }
-        yum install spellcheck
         stage('trigger_spell_check_pipline'){
             steps{
                 build job: 'spellcheck', wait: false
