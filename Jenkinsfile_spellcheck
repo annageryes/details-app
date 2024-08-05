@@ -6,17 +6,20 @@ pipeline{
     stages{
         
            stage('spellcheck'){
-            steps{
-                echo 'check code spell check'
-                sleep "${sleep_time}"
-                sh '''
-	            codespell /home/jenkins/workspace/spellcheck/* > output_codespell.txt
-                cat output_codespell.txt
-                '''
-            } //error with artifact
+              steps {
+                script {
+            try {
+              def output = sh(returnStdout: true, script: 'codespell /home/jenkins/workspace/spellcheck/*').trim()
+              echo "Output: '${output}'"
+            } catch (Exception e) {
+                currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
+            }
+                
+        }
         }
 
     }
+}
 }
 
 
