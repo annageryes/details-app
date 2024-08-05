@@ -21,7 +21,7 @@ pipeline{
                     sudo apt-get update
                     sudo apt-get install -y curl python3 pylint codespell python3.11-venv
                     python3 -m venv .venv
-                    source .venv/bin/activate
+                    source venv/bin/activate
                     python3 -m pip install -r requirements.txt
 
 
