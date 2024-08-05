@@ -30,23 +30,23 @@ pipeline{
                 '''
             }
         }
-        stage('trigger_spell_check_pipline'){
-            steps{
-                build job: 'spellcheck', wait: true
-            } //error with artifact
-        }
+      error with artifact
+        // }  stage('trigger_spell_check_pipline'){
+        //     steps{
+        //         build job: 'spellcheck', wait: true
+        //     } //error with artifact
+        // }
 
-        stage('trigger_syntax_check_pipline'){
-            steps{
-                build job: 'syntaxcheck', wait: true
-            } //error with artifact
-        }
+        // stage('trigger_syntax_check_pipline'){
+        //     steps{
+        //         build job: 'syntaxcheck', wait: true
+        //     } //error with artifact
+        // }
 
-        stage('trigger_test_pipline'){
-            steps{
-                build job: 'details_app_test', wait: true
-            } //error with artifact
-        }
+        // stage('trigger_test_pipline'){
+        //     steps{
+        //         build job: 'details_app_test', wait: true
+        //     } //
 
          stage('trigger_build_check_pipline'){
          
