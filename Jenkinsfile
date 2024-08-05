@@ -1,8 +1,8 @@
 pipeline{
     agent {label 'workers'} // needs to have ssh agent
     parameters{
-        string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
-        string(name: 'UNAME', defaultValue:'annageryes', description:'docker_username')
+        string(name: 'sleep_time', defaultValue:'2', description:'time to sleep'),
+        string(name: 'UNAME', defaultValue:'annageryes', description:'docker_username'),
         string(name: 'PASSWD',description:'docker_password')
     }
    
