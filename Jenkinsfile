@@ -30,7 +30,6 @@ pipeline{
                 '''
             }
         }
-      error with artifact
         // }  stage('trigger_spell_check_pipline'){
         //     steps{
         //         build job: 'spellcheck', wait: true
