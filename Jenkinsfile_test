@@ -4,18 +4,7 @@ pipeline{
         string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
     }
     stages{
-        stage('pre-requisites'){
-            steps{
-                echo 'installing pre-requisites'
-                sleep "${sleep_time}"
-                sh'''
-                    virtualenv venv 
-                    . venv/bin/activate 
-                    pip install -r requirements.txt
-
-                '''
-            }
-        }
+       
          stage('Test'){
             steps{
                 echo 'Testing'
