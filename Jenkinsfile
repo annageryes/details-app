@@ -19,9 +19,7 @@ pipeline{
                 sh'''
                     export PATH=$PATH:~/.local/bin
                     sudo apt-get update
-                    sudo apt-get install -y curl python3
-                    sudo apt install pylint
-                    sudo apt install codespell
+                    sudo apt-get install -y curl python3 pylint codespell
                     python3 -m pip install pytest
 
                 '''
