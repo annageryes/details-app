@@ -20,10 +20,7 @@ pipeline{
                     export PATH=$PATH:~/.local/bin
                     sudo apt-get update
                     sudo apt-get install -y curl python3 pylint codespell virtualenv
-                    virtualenv venv 
-                    . venv/bin/activate 
-                    pip install -r requirements.txt
-
+                    
 
                 '''
             }
