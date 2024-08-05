@@ -4,16 +4,13 @@ pipeline{
         string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
     }
     stages{
-
-        stage('Linter'){
-            steps{
-                echo 'Static code analysis check'
-                sleep "${sleep_time}"
-                sh '''
-                    pylint --disable=missing-module-docstring,missing-function-docstring *.py > output_pylint.txt
-                    cat output_pylint.txt
-                '''
-            } 
+        stage('Linter') {
+            steps {
+                script {
+                  def output = sh('pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
+                  echo "Output: '${output}'"
+                }
+        
         }
      
     }
