@@ -22,7 +22,7 @@ pipeline{
             } // error with builds clean up 
         }
         
-    }
+    
 
         stage('Docker image Save'){
             steps{
@@ -35,10 +35,8 @@ pipeline{
                 """ 
             }
         }
-    }
-    post {
-        success{
-            sh""""      steps{
+         stage('Docker image Save'){
+            steps{
                 echo 'Testing'
                 sleep "${sleep_time}"
                 sh"""
@@ -48,12 +46,10 @@ pipeline{
                 """ 
             }
         }
-    }
+    }// comment to check things
     post {
         success{
             sh""""
-                docker save ${registry_user}/${docker_image_name}:${docker_image_version}  -o "${docker_image_name}:${docker_image_version}.tgz"
-            """
                 docker save ${registry_user}/${docker_image_name}:${docker_image_version}  -o "${docker_image_name}:${docker_image_version}.tgz"
             """
             archiveArtifacts artifacts: 'details_app_docker.latest.tgz', followSymlinks: false, onlyIfSuccessful: true      
