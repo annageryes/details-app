@@ -14,11 +14,12 @@ pipeline{
         
         stage('Build'){
             steps{
-                echo 'Building the Project'
-                sleep "${sleep_time}"
-                sh '''
+               
+                sh """
+                    echo 'Building the Project'
+                    sleep "${sleep_time}"
                     sudo docker build -t details-app:latest .
-                '''
+                """
             } // error with builds clean up 
         }
         
@@ -39,7 +40,7 @@ pipeline{
     }// comment to check things
     post {
         success{
-            sh""""
+            sh"""
                 docker save ${registry_user}/${docker_image_name}:${docker_image_version}  -o "${docker_image_name}:${docker_image_version}.tgz"
             """
             archiveArtifacts artifacts: 'details_app_docker.latest.tgz', followSymlinks: false, onlyIfSuccessful: true      
