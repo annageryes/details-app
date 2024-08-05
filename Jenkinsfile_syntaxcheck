@@ -7,7 +7,7 @@ pipeline{
         stage('Linter') {
             steps {
                 script {
-                  def output = sh('pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
+                  def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
                   echo "Output: '${output}'"
                 }
         
