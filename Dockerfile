@@ -1,4 +1,4 @@
-FROM python:docker-alpine AS base
+FROM python:3.11-alpine AS base
 COPY ./pyproject.toml ./
 RUN apk add --no-cache --update build-base git python3-dev
 RUN pip install poetry
