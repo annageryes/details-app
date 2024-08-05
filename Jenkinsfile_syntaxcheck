@@ -10,7 +10,8 @@ pipeline{
                 echo 'Static code analysis check'
                 sleep "${sleep_time}"
                 sh '''
-                    pylint --disable=missing-module-docstring,missing-function-docstring *.py
+                    pylint --disable=missing-module-docstring,missing-function-docstring *.py > output_pylint.txt
+                    cat output_pylint.txt
                 '''
             } 
         }
