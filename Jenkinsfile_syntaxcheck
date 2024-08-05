@@ -4,13 +4,18 @@ pipeline{
         string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
     }
     stages{
+
+        
         stage('Linter') {
             steps {
                 script {
-                  def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
-                  echo "Output: '${output}'"
-                }
-        
+            try {
+              def output = sh(returnStdout: true, script: 'pylint --disable=missing-module-docstring,missing-function-docstring *.py').trim()
+              echo "Output: '${output}'"
+            } catch (Exception e) {
+                currentBuild.result = 'UNSTABLE' //so that if pylintfailes if pylint failes 
+            }
+                
         }
      
     }
