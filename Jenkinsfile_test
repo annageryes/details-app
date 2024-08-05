@@ -21,6 +21,8 @@ pipeline{
                 echo 'Testing'
                 sleep "${sleep_time}"
                 sh'''
+                    . venv/bin/activate 
+
                     python3 -m pytest
                 ''' // error --> verify that you are running correct env
             }
