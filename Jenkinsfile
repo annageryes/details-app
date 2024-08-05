@@ -2,6 +2,8 @@ pipeline{
     agent {label 'workers'} // needs to have ssh agent
     parameters{
         string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
+        string(name: 'UNAME', defaultValue:'annageryes', description:'docker_username')
+        string(name: 'PASSWD',description:'docker_password')
     }
    
     stages{
@@ -48,6 +50,14 @@ pipeline{
         }
 
          stage('trigger_build_check_pipline'){
+            input{
+                message "Press Ok to continue"
+                submitter "user1,user2"
+                parameters {
+                    string(name: 'UNAME', defaultValue:'annageryes', description:'docker_username')
+                    string(name: 'PASSWD', defaultValue:"${PASSWD}",description:'docker_password')
+                    }
+            }
             steps{
                 build job: 'details_app_build', wait: true
             } //error with artifact
