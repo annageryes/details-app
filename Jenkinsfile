@@ -12,17 +12,17 @@ pipeline{
                 sleep "${sleep_time}"
             } //error with artifact
         }
-       stage('Pre-Build'){
+       stage('pre-requisites'){
             steps{
                 echo 'Checking pre-requisites'
                 sleep "${sleep_time}"
                 sh'''
                     export PATH=$PATH:~/.local/bin
                     sudo apt-get update
-                    sudo apt-get install -y curl python3 pylint codespell python3.11-venv
-                    python3 -m venv .venv
-                    source venv/bin/activate
-                    python3 -m pip install -r requirements.txt
+                    sudo apt-get install -y curl python3 pylint codespell virtualenv
+                    virtualenv venv --distribute
+                    . venv/bin/activate 
+                    pip install -r requirements.txt
 
 
                 '''
