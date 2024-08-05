@@ -12,7 +12,7 @@ pipeline{
                 sh '''
                     pylint --disable=missing-module-docstring,missing-function-docstring *.py
                 '''
-            } // error app syntax --> fix the strings in app or bypass them
+            } 
         }
      
     }
