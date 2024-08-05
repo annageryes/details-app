@@ -12,7 +12,7 @@ pipeline{
               def output = sh(returnStdout: true, script: 'codespell *').trim()
               echo "Output: '${output}'"
             } catch (Exception e) {
-                currentBuild.result = 'SUCCESS'//'UNSTABLE' //so that if pylint failes if pylint failes 
+                currentBuild.result = 'UNSTABLE' //so that if pylint failes if pylint failes 
             }
                 
         }

@@ -2,7 +2,6 @@ pipeline{
     agent {label 'workers'} // needs to have ssh agent
     parameters{
         string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
-        string(name: 'PASSWD',description:'docker_password')
     }
    
     stages{
@@ -30,30 +29,28 @@ pipeline{
                 '''
             }
         }
-        // }  stage('trigger_spell_check_pipline'){
-        //     steps{
-        //         build job: 'spellcheck', wait: true
-        //     } //error with artifact
-        // }
+        }  stage('trigger_spell_check_pipline'){
+            steps{
+                build job: 'spellcheck', wait: true
+            } //error with artifact
+        }
 
-        // stage('trigger_syntax_check_pipline'){
-        //     steps{
-        //         build job: 'syntaxcheck', wait: true
-        //     } //error with artifact
-        // }
+        stage('trigger_syntax_check_pipline'){
+            steps{
+                build job: 'syntaxcheck', wait: true
+            } //error with artifact
+        }
 
-        // stage('trigger_test_pipline'){
-        //     steps{
-        //         build job: 'details_app_test', wait: true
-        //     } //
+        stage('trigger_test_pipline'){
+            steps{
+                build job: 'details_app_test', wait: true
+            } //
 
          stage('trigger_build_check_pipline'){
          
             steps{
-                script{
-                def List job_params = [ string(name: 'PASSWD', value: "${PASSWD}")]
                 build job: 'details_app_build', wait: true, parameters: job_params
-            } //error with artifact
+           
         }
         }
     
