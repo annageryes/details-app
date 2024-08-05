@@ -20,7 +20,6 @@ pipeline{
                     export PATH=$PATH:~/.local/bin
                     sudo apt-get update
                     sudo apt-get install -y curl python3
-                    sudo pip3 install pytest
                     sudo apt install pylint
                     sudo apt install codespell
                     python3 -m pip install pytest
