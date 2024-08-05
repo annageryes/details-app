@@ -10,7 +10,7 @@ pipeline{
                 echo 'check code spell check'
                 sleep "${sleep_time}"
                 sh '''
-	            echo "spellcheck"
+	            spellcheck /home/jenkins/workspace/spellcheck/*
                 '''
             } //error with artifact
         }
