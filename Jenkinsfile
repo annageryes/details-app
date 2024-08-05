@@ -51,9 +51,11 @@ pipeline{
          stage('trigger_build_check_pipline'){
          
             steps{
+                script{
                 def List job_params = [ string(name: 'PASSWD', value: "${PASSWD}")]
                 build job: 'details_app_build', wait: true, parameters: job_params
             } //error with artifact
+        }
         }
     
     }
