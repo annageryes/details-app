@@ -4,17 +4,17 @@ pipeline{
         string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
     }
     stages{
-        
-           stage('spellcheck'){
+
+        stage('Linter'){
             steps{
-                echo 'check code spell check'
+                echo 'Static code analysis check'
                 sleep "${sleep_time}"
                 sh '''
-	            echo "spellcheck"
+                    pylint --disable=missing-module-docstring,missing-function-docstring *.py
                 '''
-            } //error with artifact
+            } // error app syntax --> fix the strings in app or bypass them
         }
-
+     
     }
 }
 

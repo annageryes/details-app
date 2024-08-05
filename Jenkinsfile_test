@@ -1,0 +1,21 @@
+pipeline{
+   agent {label 'workers'} // needs to have ssh agent
+    parameters{
+        string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
+    }
+    stages{
+        
+         stage('Test'){
+            steps{
+                echo 'Testing'
+                sleep "${sleep_time}"
+                sh'''
+                    python3 -m pytest
+                ''' // error --> verify that you are running correct env
+            }
+        }
+
+    }
+}
+
+

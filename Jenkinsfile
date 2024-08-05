@@ -1,24 +1,58 @@
 pipeline{
-    agent {label 'worker1'}
-
+    agent {label 'workers'} // needs to have ssh agent
+    parameters{
+        string(name: 'sleep_time', defaultValue:'2', description:'time to sleep')
+    }
+   
     stages{
         
         stage('main_pipline'){
             steps{
                 echo 'statring main pipline'
+                sleep "${sleep_time}"
             } //error with artifact
         }
-        stage('pre-requisits'){
+       stage('Pre-Build'){
             steps{
-                echo 'pip install codespell'
-            } //error with artifact
+                echo 'Checking pre-requisites'
+                sleep "${sleep_time}"
+                sh'''
+                    export PATH=$PATH:~/.local/bin
+                    sudo apt-get update
+                    sudo apt-get install -y wget curl python3
+                    pip3 install pytest
+                    sudo apt install pylint
+                    sudo apt install codespell
+                '''
+            }
         }
         stage('trigger_spell_check_pipline'){
             steps{
                 build job: 'spellcheck', wait: true
             } //error with artifact
         }
+
+        stage('trigger_syntax_check_pipline'){
+            steps{
+                build job: 'syntaxcheck', wait: true
+            } //error with artifact
+        }
+
+        stage('trigger_test_pipline'){
+            steps{
+                build job: 'details_app_test', wait: true
+            } //error with artifact
+        }
+
+         stage('trigger_build_check_pipline'){
+            steps{
+                build job: 'details_app_build', wait: true
+            } //error with artifact
+        }
+    
     }
+
+  
 }
 
 
