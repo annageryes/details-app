@@ -35,17 +35,7 @@ pipeline{
                 """ 
             }
         }
-         stage('Docker image Save'){
-            steps{
-                echo 'Testing'
-                sleep "${sleep_time}"
-                sh"""
-                    sudo docker login -u ${UNAME} -p ${PASSWD} 
-                    sudo docker tag ${docker_image_name}:${docker_image_version} ${registry_user}/${docker_image_name}:${docker_image_version} 
-                    sudo docker push ${registry_user}/${docker_image_name}:${docker_image_version} 
-                """ 
-            }
-        }
+       
     }// comment to check things
     post {
         success{
